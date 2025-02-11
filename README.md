@@ -12,8 +12,8 @@ Perturbation-based mechanisms, such as differential privacy, mitigate gradient l
 In this paper, we present the first attempt to break the shield of gradient perturbation protection in Federated Learning for the extraction of private information. We focus on common noise distributions, specifically Gaussian and Laplace, and apply our approach to DNN and CNN models.  
 
 We introduce **Mjölnir**, a perturbation-resilient gradient leakage attack that is capable of removing perturbations from gradients without requiring additional access to the original model structure or external data. Specifically:  
-- **Diffusion-Based Gradient Denoising**: We leverage the inherent diffusion properties of gradient perturbation to develop a novel diffusion-based gradient denoising model.  
-- **Surrogate Client Model**: By constructing a surrogate client model that captures the structure of perturbed gradients, we obtain crucial gradient data for training the diffusion model.  
+- **Diffusion-Based Gradient Denoising**: We are the first to leverage the inherent diffusion properties of gradient perturbation to develop a novel diffusion-based gradient denoising model.  
+- **Surrogate Client Model**: By constructing a surrogate client model that captures the structure of perturbed gradients, we obtain crucial clean gradient data for the attacker to train the gradient diffusion model.  
 - **Adaptive Sampling Steps**: Monitoring disturbance levels during the reverse diffusion process enhances gradient denoising capabilities, generating gradients that closely approximate the original, unperturbed versions.  
 
 **Key Results**: Extensive experiments demonstrate that **Mjölnir** effectively recovers the protected gradients and exposes the Federated Learning process to the threat of gradient leakage, achieving superior performance in gradient denoising and private data recovery.  
@@ -31,11 +31,20 @@ We introduce **Mjölnir**, a perturbation-resilient gradient leakage attack that
 ## **Experiments**  
 ---
 ### **Notes**
-We exclude our trained Gradient Diffusion Model:
 
-1. Prepare your gradient data to train your own Gradient Diffusion Model; 
+Our trained Gradient Diffusion Model is excluded from the provided code package. To successfully run the code, please follow these steps:
 
-2. Download your trained model to the folder “saved_train_models” and run main.py.
+1. **Prepare Gradient Data**  
+   Prepare your own clean gradient data to train the Gradient Diffusion Model. Detailed instructions for data preparation and model training are available in the *Methodology* section of our paper.  
+
+2. **Train the Gradient Diffusion Model**  
+   Train your Gradient Diffusion Model using the prepared data.
+
+3. **Save the Trained Model**  
+   Once training is complete, save the trained model in the folder named 'saved_train_models'.  
+
+4. **Run the Code**  
+   Execute `main.py`.
 
 ### **Experimental Setups**  
 
