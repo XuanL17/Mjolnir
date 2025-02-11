@@ -57,6 +57,7 @@ def calc_ssim(img1_path, img2_path):
     # 此处因为转换为灰度值之后的图像范围是0-255，所以data_range为255，如果转化为浮点数，且是0-1的范围，则data_range应为1
     ssim_score = ssim(img1, img2, data_range=255)
     return ssim_score
+
 def gt_psnr(img_batch, ref_batch, batched=False, factor=255):
     """Standard PSNR."""
 
