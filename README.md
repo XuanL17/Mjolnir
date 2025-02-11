@@ -1,7 +1,9 @@
-# Mjölnir: Breaking the Shield of Perturbation-Protected Gradients via Adaptive Diffusion *(AAAI-25 Main Track)*  
-**Xuan Liu, Siqi Cai, Qihua Zhou, Song Guo, Ruibin Li, Kaiwei Lin**  
+# **Mjölnir: Breaking the Shield of Perturbation-Protected Gradients via Adaptive Diffusion**  
 
-**Full Paper Preprint**: [https://arxiv.org/abs/2407.05285](https://arxiv.org/abs/2407.05285)
+**Xuan Liu, Siqi Cai, Qihua Zhou, Song Guo, Ruibin Li, Kaiwei Lin**
+
+**Full Paper Preprint**:  [https://arxiv.org/abs/2407.05285](https://arxiv.org/abs/2407.05285) 
+
 ---
 
 ## **Abstract**  
@@ -20,15 +22,16 @@ We introduce **Mjölnir**, a perturbation-resilient gradient leakage attack that
 
 ## **Mjölnir Overview**  
 
-### **Threat Model**  
-![Threat Model](M_fig1.png)  
-
-### **Methodology**  
-![Methodology](M_fig2.png)  
+| **Threat Model**                     | **Methodology**                   |
+|--------------------------------------|------------------------------------|
+| ![Threat Model](M_fig1.png)          | ![Methodology](M_fig2.png)        |
 
 ---
 
 ## **Experiments**  
+---
+### **Notes**
+You can simply download your pretrained gradient diffusion model to the folder “saved_train_models” and run main.py
 
 ### **Experimental Setups**  
 
@@ -52,6 +55,47 @@ We introduce **Mjölnir**, a perturbation-resilient gradient leakage attack that
      - **Gradient PSNR**: Measures the peak signal-to-noise ratio of recovered gradients compared to the original gradients.  
 
    Higher metric values indicate better recovery fidelity and gradient accuracy.  
+
+### **Sample Results**
+
+#### **Privacy Leakage Capability**
+
+| ![Samle Result](M_fig5.png)   | ![Inter Results](M_fig4.png)     |
+|-------------------------------|----------------------------------|
+| **Compare with ground truth** | **Visualization via iterations** |
+
+- **Visualization**: The images above compare the recovered private images between Mjölnir variants and traditional gradient leakage attacks like GRNN, IG, and DLG.  
+
+
+#### **Gradient Denoising Quality**  
+
+##### **Inference Time**  
+Mjölnir demonstrates competitive inference efficiency compared to non-diffusion models. All experiments were conducted on the following hardware:  
+- **GPU**: NVIDIA GeForce RTX 2060  
+- **CPU**: Intel(R) Core(TM) i7-10870H @ 2.20GHz  
+
+| **Model**                | **Inference Time (s)** |
+|--------------------------|------------------------|
+| **NBNet**                | 2.653                 |
+| **SS-BSN**               | 26.15                 |
+| **AP-BSN**               | 7.138                 |
+| **Mjölnir**              | 6.834                 |
+| **Mjölnir (Non-Adaptive)**| 6.834                 |
+| **Mjölnir (Conditional)**| 6.917                 |
+
+##### **Gradient Recovery Metrics**  
+The table below summarizes the gradient denoising quality for various models across different datasets.   
+
+| **Model**                | **MNIST** ($CosSimilar_{g}$ / $PSNR_g$) | **CIFAR100** ($CosSimilar_{g}$ / $PSNR_g$) | **STL10** ($CosSimilar_{g}$ / $PSNR_g$) |
+|--------------------------|-----------------------------------------|-------------------------------------------|-----------------------------------------|
+| **NBNet**                | 0.992 / 35.74                         | 0.979 / 27.51                             | 0.979 / 27.23                           |
+| **SS-BSN**               | 0.995 / 32.35                         | 0.845 / 22.85                             | 0.845 / 22.84                           |
+| **AP-BSN**               | 0.968 / 29.61                         | 0.892 / 24.01                             | 0.893 / 24.12                           |
+| **Mjölnir**              | 0.996 / 38.76                         | 0.990 / 30.42                             | 0.990 / 30.01                           |
+| **Mjölnir (Non-Adaptive)**| 0.995 / 38.59                         | 0.990 / 30.39                             | 0.990 / 29.87                           |
+| **Mjölnir (Conditional)**| 0.996 / 38.78                         | 0.990 / 30.53                             | 0.993 / 30.22                           |
+
+
 
 ---
 
