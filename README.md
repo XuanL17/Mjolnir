@@ -31,7 +31,10 @@ We introduce **Mjölnir**, a perturbation-resilient gradient leakage attack that
 ## **Experiments**  
 ---
 ### **Notes**
-You can simply download your pretrained gradient diffusion model to the folder “saved_train_models” and run main.py
+We exclude our trained Gradient Diffusion Model
+Please 1. Prepare your gradient data to train your own Gradient Diffusion Model; 
+
+2. Download your trained model to the folder “saved_train_models” and run main.py.
 
 ### **Experimental Setups**  
 
